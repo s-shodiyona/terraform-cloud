@@ -1,13 +1,16 @@
-data "tfe_outputs" "vpc"  {
-    config = {
-        organization = "Bobomuradova"
-        workspaces = {
-            name = "vpc" 
-        }
+data "terraform_remote_state" "vpc" {
+  backend = "remote"
+
+  config = {
+    organization = "Bobomuradova"
+    workspaces = {
+      name = "vpc"
     }
+  }
 }
 
 
+
 output all {
-    value = data.tfe_outputs.vpc.outputs
+    value = data.terraform_remote_state.vpc.outputs
 }
